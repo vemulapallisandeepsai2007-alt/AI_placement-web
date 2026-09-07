@@ -37,7 +37,10 @@ export default function LoginPage() {
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Authentication failed');
+      setError(
+        err.response?.data?.message
+          || (err.request ? 'Cannot reach the authentication server. Check the deployed API URL and CORS settings.' : 'Authentication failed')
+      );
     } finally {
       setLoading(false);
     }
