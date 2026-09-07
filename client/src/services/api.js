@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5002/api';
+const API_URL = import.meta.env.VITE_API_URL || (
+  import.meta.env.PROD
+    ? 'https://ai-placement-web.onrender.com/api'
+    : 'http://localhost:5002/api'
+);
 
 const api = axios.create({
   baseURL: API_URL,
